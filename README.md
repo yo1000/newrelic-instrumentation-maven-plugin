@@ -13,10 +13,9 @@ Configure plugins section in pom.xml file.
 <plugin>
     <groupId>com.yo1000</groupId>
     <artifactId>newrelic-instrumentation-maven-plugin</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <executions>
         <execution>
-            <phase>compile</phase>
             <goals>
                 <goal>newrelic-instrumentation</goal>
             </goals>
