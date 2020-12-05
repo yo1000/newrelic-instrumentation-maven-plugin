@@ -4,7 +4,7 @@
 
     <groupId>com.yo1000</groupId>
     <artifactId>newrelic-instrumentation-maven-plugin</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>newrelic-instrumentation-maven-plugin</name>
