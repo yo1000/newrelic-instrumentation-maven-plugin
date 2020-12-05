@@ -31,7 +31,7 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
     private String name = "newrelic-extension";
 
     @Parameter
-    private Map<String, String> manuallyDefinitions;
+    private Map<String, String> manuallyDefinitions = Collections.emptyMap();
 
     protected Map.Entry<ClassName, MethodNames> visitClassFile(File f) throws IOException {
         final ClassMethodCapturingVisitor visitor = new ClassMethodCapturingVisitor();
