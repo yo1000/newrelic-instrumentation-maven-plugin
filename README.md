@@ -13,7 +13,7 @@ Configure plugins section in pom.xml file.
 <plugin>
     <groupId>com.yo1000</groupId>
     <artifactId>newrelic-instrumentation-maven-plugin</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <executions>
         <execution>
             <goals>
@@ -36,7 +36,7 @@ total 4
 
 cat target/newrelic-instrumentation/extensions/newrelic-extension.xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<extension name="newrelic-extension">
+<extension enabled="true" name="newrelic-extension" version="1.0">
     <instrumentation>
         <pointcut transactionStartPoint="true">
             <className>...
