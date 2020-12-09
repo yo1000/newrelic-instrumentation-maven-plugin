@@ -28,6 +28,9 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
     private File outputDirectory;
 
     @Parameter
+    private String namespaceUri = "https://newrelic.com/docs/java/xsd/v1.0";
+
+    @Parameter
     private String name = "newrelic-extension";
 
     @Parameter
@@ -90,7 +93,7 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
                     .newInstance()
                     .newDocumentBuilder()
                     .getDOMImplementation()
-                    .createDocument("", "extension", null);
+                    .createDocument(namespaceUri, "extension", null);
 
             Element root = (Element) document.getFirstChild();
             root.setAttribute("name", name);
@@ -100,6 +103,8 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
             Element instrElement = (Element) root.appendChild(document.createElement("instrumentation"));
 
             map.forEach(entry -> {
+                if (entry.getValue().isEmpty()) return;
+
                 Element pointcutElement = (Element) instrElement.appendChild(document.createElement("pointcut"));
                 pointcutElement.setAttribute("transactionStartPoint", "true");
 
