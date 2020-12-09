@@ -13,7 +13,7 @@ Configure plugins section in pom.xml file.
 <plugin>
     <groupId>com.yo1000</groupId>
     <artifactId>newrelic-instrumentation-maven-plugin</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <executions>
         <execution>
             <goals>
@@ -50,10 +50,26 @@ Compiled class files location.
 
 defaults: `${project.build.outputDirectory}`
 
+#### namespaceUri
+XML namespace.
+
+defaults: `https://newrelic.com/docs/java/xsd/v1.0`
+
 #### name
 Custom instrumentation XML file name.
 
 defaults: `newrelic-extension`
+
+#### version
+Custom instrumentation XML version.
+If any same named instrumentation XML, only enable to have the latest version.
+
+defaults: `1.0`
+
+#### enabled
+Enable Custom instrumentation XML.
+
+defaults: `true`
 
 #### manuallyDefinitions
 Custom instrumentation additional pointcut configs by manually.
