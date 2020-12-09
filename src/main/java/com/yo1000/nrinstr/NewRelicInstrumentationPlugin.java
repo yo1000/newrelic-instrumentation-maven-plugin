@@ -31,6 +31,12 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
     private String name = "newrelic-extension";
 
     @Parameter
+    private String version = "1.0";
+
+    @Parameter
+    private boolean enabled = true;
+
+    @Parameter
     private Map<String, String> manuallyDefinitions = Collections.emptyMap();
 
     protected Map.Entry<ClassName, MethodNames> visitClassFile(File f) throws IOException {
@@ -88,6 +94,8 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
 
             Element root = (Element) document.getFirstChild();
             root.setAttribute("name", name);
+            root.setAttribute("version", version);
+            root.setAttribute("enabled", String.valueOf(enabled));
 
             Element instrElement = (Element) root.appendChild(document.createElement("instrumentation"));
 
