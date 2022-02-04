@@ -47,6 +47,8 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
 
         try (InputStream in = new FileInputStream(f)) {
             new ClassReader(in).accept(visitor, ClassReader.SKIP_FRAMES);
+        } catch (Exception e) {
+            getLog().error(f.getAbsolutePath(), e);
         }
 
         return new AbstractMap.SimpleEntry<>(visitor.getClassName(), visitor.getMethodNames());
