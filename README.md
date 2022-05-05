@@ -13,7 +13,7 @@ Configure plugins section in pom.xml file.
 <plugin>
     <groupId>com.yo1000</groupId>
     <artifactId>newrelic-instrumentation-maven-plugin</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <executions>
         <execution>
             <goals>
