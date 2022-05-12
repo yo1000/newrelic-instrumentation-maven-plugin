@@ -255,7 +255,7 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
 
         @Override
         public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-            if (!name.equals("<init>")) methodNames.add(new MethodName(name));
+            if (!name.contains("<") && !name.contains(">")) methodNames.add(new MethodName(name));
             return super.visitMethod(access, name, desc, signature, exceptions);
         }
 
