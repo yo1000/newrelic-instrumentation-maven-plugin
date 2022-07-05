@@ -13,7 +13,7 @@ Configure plugins section in pom.xml file.
 <plugin>
     <groupId>com.yo1000</groupId>
     <artifactId>newrelic-instrumentation-maven-plugin</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <executions>
         <execution>
             <goals>
@@ -94,6 +94,11 @@ examples:
     </com.yo1000.demo.Foo-Bar>
 </manuallyDefinitions>
 ```
+
+#### asm
+ASM API version. Can choose from `5`, `6`, `7`, `8`, `9`.
+
+defaults: `9`
 
 ## How to Build
 Install to Maven local repository.

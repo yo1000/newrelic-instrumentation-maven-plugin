@@ -42,8 +42,22 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
     @Parameter
     private Map<String, String> manuallyDefinitions = Collections.emptyMap();
 
+    @Parameter
+    private String asm = "9";
+
+    private static final int API_DEFAULT = Opcodes.ASM9;
+
+    private Map<String, Integer> apis = new HashMap<String, Integer>() {{
+        put("5", Opcodes.ASM5);
+        put("6", Opcodes.ASM6);
+        put("7", Opcodes.ASM7);
+        put("8", Opcodes.ASM8);
+        put("9", Opcodes.ASM9);
+    }};
+
     protected Map.Entry<ClassName, MethodNames> visitClassFile(File f) throws IOException {
-        final ClassMethodCapturingVisitor visitor = new ClassMethodCapturingVisitor();
+        final int api = apis.get(asm) != null ? apis.get(asm) : API_DEFAULT;
+        final ClassMethodCapturingVisitor visitor = new ClassMethodCapturingVisitor(api);
 
         try (InputStream in = new FileInputStream(f)) {
             new ClassReader(in).accept(visitor, ClassReader.SKIP_FRAMES);
@@ -243,8 +257,8 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
         private ClassName className;
         private final MethodNames methodNames = new MethodNames();
 
-        ClassMethodCapturingVisitor() {
-            super(Opcodes.ASM5);
+        ClassMethodCapturingVisitor(int api) {
+            super(api);
         }
 
         @Override
