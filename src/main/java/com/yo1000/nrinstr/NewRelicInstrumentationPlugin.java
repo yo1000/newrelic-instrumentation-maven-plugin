@@ -47,16 +47,16 @@ public class NewRelicInstrumentationPlugin extends AbstractMojo {
 
     private static final int API_DEFAULT = Opcodes.ASM9;
 
-    private Map<String, Integer> apis = new HashMap<String, Integer>() {{
+    private static final Map<String, Integer> APIS = Collections.unmodifiableMap(new HashMap<String, Integer>() {{
         put("5", Opcodes.ASM5);
         put("6", Opcodes.ASM6);
         put("7", Opcodes.ASM7);
         put("8", Opcodes.ASM8);
         put("9", Opcodes.ASM9);
-    }};
+    }});
 
     protected Map.Entry<ClassName, MethodNames> visitClassFile(File f) throws IOException {
-        final int api = apis.get(asm) != null ? apis.get(asm) : API_DEFAULT;
+        final int api = APIS.get(asm) != null ? APIS.get(asm) : API_DEFAULT;
         final ClassMethodCapturingVisitor visitor = new ClassMethodCapturingVisitor(api);
 
         try (InputStream in = new FileInputStream(f)) {
