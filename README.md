@@ -117,6 +117,7 @@ ASM API version. Can choose from `5`, `6`, `7`, `8`, `9`.
 
 defaults: `9`
 
+
 How to Build
 --------------------------------------------------------------------------------
 
@@ -124,4 +125,20 @@ Install to Maven local repository.
 
 ```
 ./mvnw clean install
+```
+
+
+How to Release
+--------------------------------------------------------------------------------
+
+```bash
+export GPG_TTY=$(tty)
+gpg-agent
+
+# Requires input GPG Key passphrase
+gpg --import /path/to/import-gpg-key.asc
+gpg --list-keys
+
+# Requires input GPG Key passphrase
+./mvnw clean deploy -Prelease -s /path/to/settings.xml -U
 ```
